@@ -1,0 +1,72 @@
+\section{L0-Regularized Least-Squares}
+
+\begin{frame}{Sparse linear model}
+    \begin{tikzpicture}[remember picture,overlay]
+        \onslide<+-> {
+            \draw [ultra thick,<->] ($(current page.north)+(-2.05,-0.32\textheight)$) -- ($(current page.north)+(2.05,-0.32\textheight)$) node (arrow) [midway] {};
+            \node at ($(arrow.north)+(0,0.1)$) {\textbf{Sparse linear model}};
+            \node [text width=0.325\textwidth] at ($(current page.north)+(-4,-0.3\textheight)$) (obs) {
+                \begin{blocksix}{}
+                    \centering
+                    \textbf{Linear approximation}
+                \end{blocksix}
+            };
+            \node [text width=.325\textwidth] at ($(current page.north)+(4,-0.3\textheight)$) (dic) {
+                \begin{blocksix}{}
+                    \centering
+                    \textbf{Sparse solution}
+                \end{blocksix}
+            };
+            \node at ($(arrow.south)+(0,-0.6)$) (applications) {
+                \begin{varwidth}{\linewidth}
+                    \centering
+                    \scriptsize{Machine Learning} \\
+                    \scriptsize{Signal processing} \\
+                    \scriptsize{Network design} \\
+                    \scriptsize{...}
+                \end{varwidth}
+            };
+        };
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [text width=.45\textwidth] at ($(current page.north)+(0,-0.625\textheight)$) (problem) {
+                \begin{blocktwo}{$\ell_0$-regularized least-squares}
+                    \centering
+                    \vspace*{-0.5cm}
+                    \begin{align*}
+                        \textstyle\min_{\pv} &\quad \tfrac{1}{2}\norm{\obs - \dic\pv}{2}^2 + \reg \norm{\pv}{0} \\
+                        \text{s.t.} &\quad \bigL \leq \pv \leq \bigU
+                    \end{align*}
+                \end{blocktwo}
+            };
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [text width=.5\textwidth, align=center] at ($(problem)+(4.5,0.5)$) (boundstext) {\scriptsize{\emphtwo{Bounds needed for}} \\ \scriptsize{\emphtwo{numerical tractability}}};
+            \draw[thick,->,mLightBrown] (boundstext.south) .. controls ($(boundstext.south)+(-0.25,-0.75)$) .. ($(problem.center)+(0.75,-0.70)$);
+        }
+        %
+        %
+        %
+        \onslide<+-> {
+            \node [text width=.35\textwidth] at ($(problem)+(-3,-0.3\textheight)$) (mipsolver) {
+                \begin{blocksix}{} 
+                    \centering
+                    \textbf{Generic \emphtwo{Mixed-Integer Program} solvers}
+                \end{blocksix}
+            };
+            \node [text width=.35\textwidth] at ($(problem)+(+3,-0.3\textheight)$) (bnbsolver) {
+                \begin{blocksix}{} 
+                    \centering
+                    \textbf{Specialized \emphtwo{Branch- and-Bound} solvers}
+                \end{blocksix}
+            };
+            \draw[ultra thick,->] (problem.south west) .. controls ($(problem.south west)+(-0.25,-0.4)$) .. ($(mipsolver.north)+(0,-0.3)$);
+            \draw[ultra thick,->] (problem.south east) .. controls ($(problem.south east)+(0.25,-0.4)$) .. ($(bnbsolver.north)+(0,-0.3)$);
+        }
+    \end{tikzpicture}
+\end{frame}
